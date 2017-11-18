@@ -1,6 +1,5 @@
 SECTION .data
-msgOne     db  'Hell', 0AH
-msgTwo  db  'World', 0AH
+msgOne     db  'Hello, brave new world', 0AH
 
 
 SECTION .text
@@ -9,15 +8,20 @@ global _start
 
 _start:
 
-    mov edx, 5
+    mov ebx, msgOne
+    mov eax, ebx
+
+nextchar:
+    cmp byte[eax],0
+    jz  finished
+    inc eax
+    jmp nextchar
+finished:
+    sub eax, ebx
+
+
+    mov edx, eax
     mov ecx, msgOne
-    mov ebx, 1
-    mov eax, 4
-    int 0x80
-
-
-    mov edx, 24
-    mov ecx, msgTwo
     mov ebx, 1
     mov eax, 4
     int 80h
