@@ -10,13 +10,15 @@ global _start
 
 
 _start:
-    mov eax, msg1
-    call sprintLF
+    pop     ecx
 
+nextArg:
+    cmp     ecx,0h
+    jz      noMoreArg
+    pop     eax
+    call    sprintLF
+    dec     ecx
+    jmp     nextArg
 
-    mov eax,msg2
-    call sprintLF
-
-
-    call quit
-
+noMoreArg:
+    call    quit
