@@ -1,30 +1,25 @@
 %include        'functions.asm'
 
-SECTION .data
-msg1     db      "Input your name : ",0h
-msg2     db      "Hello ",0h
-
-SECTION .bss
-sinput: resb    255
 
 SECTION .text
 global _start
 
 
 _start:
-    mov     eax,msg1
-    call    sprint
+    mov     ecx,0
 
-    mov     edx,255
-    mov     ecx,sinput
-    mov     ebx,0
-    mov     eax,3
-    int     80h
+nextNumber:
 
-    mov     eax,msg2
-    call    sprint
+    inc     ecx
 
-    mov     eax, sinput
-    call    sprint
+    mov     eax,ecx
+    add     eax,48
+    push    eax
+    mov     eax,esp
+    call    sprintLF
+
+    pop     eax
+    cmp     ecx,10
+    jne     nextNumber
 
     call    quit
