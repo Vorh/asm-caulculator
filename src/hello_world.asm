@@ -1,24 +1,30 @@
 %include        'functions.asm'
 
 SECTION .data
-msg1     db  'Hello, brave new world', 0h
-msg2     db  'This is how we recycle in NASM', 0h
+msg1     db      "Input your name : ",0h
+msg2     db      "Hello ",0h
 
+SECTION .bss
+sinput: resb    255
 
 SECTION .text
 global _start
 
 
 _start:
-    pop     ecx
+    mov     eax,msg1
+    call    sprint
 
-nextArg:
-    cmp     ecx,0h
-    jz      noMoreArg
-    pop     eax
-    call    sprintLF
-    dec     ecx
-    jmp     nextArg
+    mov     edx,255
+    mov     ecx,sinput
+    mov     ebx,0
+    mov     eax,3
+    int     80h
 
-noMoreArg:
+    mov     eax,msg2
+    call    sprint
+
+    mov     eax, sinput
+    call    sprint
+
     call    quit
