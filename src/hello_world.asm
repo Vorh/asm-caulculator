@@ -9,17 +9,11 @@ _start:
     mov     ecx,0
 
 nextNumber:
-
     inc     ecx
-
     mov     eax,ecx
-    add     eax,48
-    push    eax
-    mov     eax,esp
-    call    sprintLF
-
-    pop     eax
+    call    inprintLF
     cmp     ecx,10
     jne     nextNumber
 
     call    quit
+
