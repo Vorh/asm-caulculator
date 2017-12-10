@@ -45,3 +45,15 @@ quit:
     mov eax, 1
     int 80H
     ret
+
+sprintLF:
+    call sprint
+
+    push eax
+    mov  eax, 0AH
+    push eax
+    mov  eax, esp
+    call sprint
+    pop  eax
+    pop  eax
+    ret

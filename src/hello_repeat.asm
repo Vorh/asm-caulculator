@@ -2,8 +2,12 @@
 
 SECTION .data
 
-msg db 'Hello new brave world!', 0AH,0H
-msg1 db 'Repeat call function', 0AH,0H
+msg db 'Please enter your name ' ,0H
+msg1 db 'Your name: ', 0H
+
+SECTION .bss
+sinput: resb 255
+
 
 SECTION .text
 global _start
@@ -14,7 +18,18 @@ _start:
     mov eax, msg
     call sprint
 
+    mov edx, 255
+    mov ecx, sinput
+    mov ebx, 0
+    mov eax, 3
+    int 80h
+
     mov eax, msg1
     call sprint
 
+    mov eax, sinput
+    call sprint
+
     call quit
+
+
