@@ -13,23 +13,24 @@ SECTION .text
 global _start
 
 
-_start:
+    _start:
 
-    mov eax, msg
-    call sprint
+        mov     ecx, 0
 
-    mov edx, 255
-    mov ecx, sinput
-    mov ebx, 0
-    mov eax, 3
-    int 80h
+    nextNumber:
 
-    mov eax, msg1
-    call sprint
+        inc     ecx
 
-    mov eax, sinput
-    call sprint
+        mov     eax, ecx
+        add     eax, 48
+        push    eax
+        mov     eax, esp
+        call    sprintLF
 
-    call quit
+        pop     eax
+        cmp     ecx,10
+        jne     nextNumber
+
+        call    quit
 
 
