@@ -22,7 +22,7 @@ global _start
         inc     ecx
         mov     eax, ecx
         call    iprintLF
-        cmp     ecx,10
+        cmp     ecx,21
         jne     nextNumber
 
         call    quit
