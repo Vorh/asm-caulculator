@@ -20,14 +20,8 @@ global _start
     nextNumber:
 
         inc     ecx
-
         mov     eax, ecx
-        add     eax, 48
-        push    eax
-        mov     eax, esp
-        call    sprintLF
-
-        pop     eax
+        call    iprintLF
         cmp     ecx,10
         jne     nextNumber
 
