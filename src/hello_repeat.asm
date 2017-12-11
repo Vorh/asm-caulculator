@@ -18,7 +18,8 @@ global _start
         mov eax,90
         mov ebx,9
 
-        sub eax,ebx
+        mul  ebx
+
         call iprintLF
 
         call quit
