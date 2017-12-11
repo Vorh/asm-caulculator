@@ -15,16 +15,13 @@ global _start
 
     _start:
 
-        mov     ecx, 0
+        mov eax,90
+        mov ebx,9
 
-    nextNumber:
+        add eax,ebx
 
-        inc     ecx
-        mov     eax, ecx
-        call    iprintLF
-        cmp     ecx,21
-        jne     nextNumber
+        call iprintLF
 
-        call    quit
+        call quit
 
 
