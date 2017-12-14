@@ -2,7 +2,9 @@
 
 SECTION .data
 
-msg db 'Divide ' ,0H
+msg1 db 'Jumping to finished label.',0H
+msg2 db 'Inside subroutine number:',0H
+msg3 db 'Inside subroutine "finished".', 0H
 
 SECTION .bss
 sinput: resb 255
@@ -15,23 +17,41 @@ global _start
 
     _start:
 
-        pop  ecx
-        mov  edx, 0
 
-    nextArg:
+        subtoutineOne:
 
-        cmp  ecx, 0H
-        jz   noMoreArg
-        pop  eax
-        call atoi
-        add  edx, eax
-        dec  ecx
-        jmp  nextArg
+            mov     eax, msg1
+            call    sprintLF
+            jmp     .finished
 
-    noMoreArg:
+        .finished:
+            mov     eax,msg2
+            call    sprint
+            mov     eax,1
+            call    iprintLF
 
-        mov  eax, edx
-        call iprintLF
-        call quit
+        subtroutineTwo:
+            mov     eax,msg1
+            call    sprintLF
+            jmp     .finished
+
+        .finished:
+
+            mov     eax, msg2
+            call    sprint
+            mov     eax, 2
+            call    iprintLF
+
+
+            mov     eax,msg1
+            call    sprintLF
+            jmp     finisheds
+
+            finisheds:
+
+            mov     eax,msg3
+            call    sprintLF
+            call    quit
+
 
 
