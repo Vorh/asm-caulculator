@@ -15,16 +15,23 @@ global _start
 
     _start:
 
-        mov eax,90
-        mov ebx,9
+        pop  ecx
+        mov  edx, 0
 
-        div  ebx
-        call iprintLF
-        mov  eax, msg
-        call sprint
-        mov  eax,edx
-        call iprintLF
+    nextArg:
 
+        cmp  ecx, 0H
+        jz   noMoreArg
+        pop  eax
+        call atoi
+        add  edx, eax
+        dec  ecx
+        jmp  nextArg
+
+    noMoreArg:
+
+        mov  eax, edx
+        call iprintLF
         call quit
 
 
