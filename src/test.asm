@@ -1,22 +1,24 @@
 %include 'fuc.asm'
 
-SECTION .data
+SECTION .bss
 
-msg db 'test1' , 0H
-msg2 db 'test2' , 0H
+array  resd 1000
 
 
 SECTION .text
 global _start
 
     _start:
-          mov   eax,msg
+        mov     ecx,1000
+        mov     esi, array
+        mov     eax,0
+    lp:
+        add     eax,[esi]
+        add     esi,4
+        loop    lp
 
-          push  eax
+        call    sprintLF
+        call    quit
 
-          call sprintLF
 
-          pop eax
-          call sprintLF
 
-          call quit
