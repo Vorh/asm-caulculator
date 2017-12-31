@@ -1,4 +1,4 @@
-%include 'syscall.asm'
+%include 'syscall.inc'
 
 
 global print
@@ -12,7 +12,7 @@ SECTION .text
         push ebp
         mov  ebp,esp
         push dword [ebp+8]
-        call strlen
+        ;call strlen
         add esp, 4
         syscall 4,1, [ebp+8],eax
         mov esp,ebp

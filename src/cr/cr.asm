@@ -12,7 +12,7 @@ global _start
          jz      noMoreArgs
          pop     eax
          push    eax
-         call    print
+         ;call    print
          dec     ecx
          jmp     nextArg
 
