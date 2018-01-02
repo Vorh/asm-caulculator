@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+
+
 
 
 for f in *.asm; do
@@ -13,8 +16,6 @@ done
 
 ld -m elf_i386 $list -o test
 
-
-
 ./test
 
 
@@ -23,10 +24,13 @@ while getopts ":d" opt; do
     case $opt in
     d)
       rm $list
+      rm ./test
+
     ;;
     \?)
     echo "Specify fail" -$OPTARG >&2
     ;;
     esac
 done
+
 

@@ -1,5 +1,7 @@
 
 extern print
+extern quit
+extern sprint
 
 SECTION .text
 global _start
@@ -11,17 +13,10 @@ global _start
          cmp     ecx, 0h
          jz      noMoreArgs
          pop     eax
-         push    eax
-         ;call    print
+         call    sprint
          dec     ecx
          jmp     nextArg
 
      noMoreArgs:
          call    quit
 
-    quit:
-
-        mov ebx, 0
-        mov eax, 1
-        int 80H
-        ret
