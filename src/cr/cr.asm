@@ -12,8 +12,8 @@ global _start
      nextArg:
          cmp     ecx, 0h
          jz      noMoreArgs
-         pop     eax
-         call    sprint
+         call    print
+         sub     esp, 4
          dec     ecx
          jmp     nextArg
 

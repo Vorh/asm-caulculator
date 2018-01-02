@@ -42,45 +42,45 @@ SECTION .text
 
 
 
-        slen:
+    slen:
 
-            push ebx,
-            mov  ebx,eax
+        push ebx
+        mov  ebx,eax
 
-        nextchar:
+    .nextchar:
 
-            cmp  byte [eax], 0
-            jz   finished
-            inc  eax
-            jmp  nextchar
+        cmp  byte [eax], 0
+        jz   finished
+        inc  eax
+        jmp  nextchar
 
-        finished:
+    .finished:
 
-            sub eax,ebx
-            pop ebx
-            ret
+        sub eax,ebx
+        pop ebx
+        ret
 
 
-        sprint:
+    sprint:
 
-            push edx
-            push ecx
-            push ebx
-            push eax
-            call slen
+        push edx
+        push ecx
+        push ebx
+        push eax
+        call slen
 
-            mov edx, eax
-            pop eax
+        mov edx, eax
+        pop eax
 
-            mov ecx, eax
-            mov ebx, 1
-            mov eax, 4
-            int 80H
+        mov ecx, eax
+        mov ebx, 1
+        mov eax, 4
+        int 80H
 
-            pop ebx
-            pop ecx
-            pop edx
-            ret
+        pop ebx
+        pop ecx
+        pop edx
+        ret
 
 
 
