@@ -4,7 +4,6 @@
 global print
 global printLN
 global strlen
-global sprint
 
 
 SECTION .data
@@ -18,15 +17,17 @@ SECTION .text
     print:
         push ebp
         mov  ebp,esp
+
         push dword [ebp+8]
         call strlen
         add esp, 4
         syscall 4,1, [ebp+8],eax
+
         mov esp,ebp
         pop ebp
         ret
 
-
+    ; Write string with symbol new_line
     printLN:
         push ebp
         mov  ebp,esp
@@ -34,7 +35,7 @@ SECTION .text
         push dword [ebp+8] ; first argument
         call print
 
-        push new_line
+        push dword new_line
         call print
 
         mov  esp,ebp

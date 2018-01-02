@@ -4,7 +4,7 @@
 
 
 for f in *.asm; do
-    nasm -f elf $f
+    nasm -f elf -g -F dwarf $f
 done
 
 
