@@ -7,25 +7,22 @@ extern quit
 SECTION .data
 
 nameMsg db 'HI bitch',0
-arguments resb 20
 
 SECTION .text
 global _start
 
      _start:
-         pop ecx
-     nextArg:
-         cmp     ecx, 0h
-         jz      noMoreArgs
-         pop     eax
-         mov     arguments, eax
-         dec     ecx
-         jmp     nextArg
+         mov  ecx, [esp]
+         mov  esi ,esp
+         add  esi, 4
 
-     noMoreArgs:
-
-         push dword nameMsg
+     .again:
+         push dword [esi]
          call printLN
+         add  esi,4
 
-         call    quit
+         loop .again
+
+         call quit
+
 

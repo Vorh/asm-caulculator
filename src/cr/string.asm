@@ -8,7 +8,7 @@ global strlen
 
 SECTION .data
 
-new_line db 0AH,0
+new_line db 0AH,0h
 
 SECTION .text
 
@@ -47,22 +47,20 @@ SECTION .text
     ; return: eax
     strlen:
         push ebp
-        mov ebp,esp
-        xor eax, eax
-        mov esi, [ebp+8] ; First argument
+        mov  ebp,esp
+        push esi
+        xor  eax,eax
+        mov  esi, [ebp+8] ; First argument
     .lp:
-        cmp byte [esi],0
-        jz  .quit
-        inc esi
-        inc eax
-        jmp short .lp
+        cmp  byte [esi],0
+        jz   .quit
+        inc  esi
+        inc  eax
+        jmp  short .lp
     .quit:
-        pop ebp
+        pop  esi
+        pop  ebp
         ret
-
-
-
-
 
 
 
