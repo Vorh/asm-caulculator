@@ -1,8 +1,8 @@
 
 extern print
 extern printLN
+extern iprint
 extern quit
-
 
 SECTION .data
 
@@ -12,16 +12,16 @@ SECTION .text
 global _start
 
      _start:
-         mov  ecx, [esp]
-         mov  esi ,esp
-         add  esi, 4
 
-     .again:
-         push dword [esi]
-         call printLN
-         add  esi,4
+         mov ecx,0
 
-         loop .again
+     nextNumber:
+         inc  ecx
+         mov  eax, ecx
+         call iprint
+         cmp  ecx,10
+         jne  nextNumber
+
 
          call quit
 
